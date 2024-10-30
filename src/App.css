@@ -1,0 +1,10 @@
+.active{
+  color: rebeccapurple;
+  font-size: larger;
+  text-decoration-line: underline;
+  font-weight: bold;
+}
+
+li{
+  padding: 10px;
+}
