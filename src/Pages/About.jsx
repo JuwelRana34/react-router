@@ -1,9 +1,10 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import userContext from "../context"
 
 function About() {
 // const [name , setName] = useState('')
 const {User , setUser} = useContext(userContext)
+
 
   return (
     <div>

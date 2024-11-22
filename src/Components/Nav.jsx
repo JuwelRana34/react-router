@@ -37,6 +37,8 @@ function Nav() {
         <NavLink to='/About'><li>About</li></NavLink> 
         <NavLink to='/Contact'><li>Contact</li></NavLink> 
         <NavLink to='/Posts'><li>Posts</li></NavLink> 
+        <NavLink to='/Phones'><li>phones</li></NavLink> 
+        <NavLink to='/Phone/:id'><li>Phone</li></NavLink> 
     </ul>
   </div>
   <div className="navbar-end">

@@ -3,6 +3,10 @@ import About from "./Pages/About"
 import Contact from "./Pages/Contact"
 import Posts from "./Pages/Posts"
 import Post from "./Pages/Post"
+import PhoneData from "./Pages/PhoneData"
+import SinglePhonedata from "./Pages/SinglePhonedata"
+
+
 
 export const postData =async ()=>{
 
@@ -20,4 +24,4 @@ return response.json()
 
 
 
-export {Home, About, Contact, Posts, Post}
+export {Home, About, Contact, Posts, Post,PhoneData,SinglePhonedata}
