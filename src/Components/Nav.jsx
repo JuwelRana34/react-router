@@ -1,6 +1,16 @@
 import { NavLink } from "react-router-dom"
 
 function Nav() {
+  const nav = <>
+  
+  <NavLink to='/'><li>Home</li></NavLink> 
+        <NavLink to='/About'><li>About</li></NavLink> 
+        <NavLink to='/Contact'><li>Contact</li></NavLink> 
+        <NavLink to='/Posts'><li>Posts</li></NavLink> 
+        <NavLink to='/Phones'><li>phones</li></NavLink> 
+
+
+  </>
   return (
     <div className="navbar bg-base-100 container mx-auto">
   <div className="navbar-start">
@@ -22,10 +32,7 @@ function Nav() {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-4 ">
-      <NavLink className={({isActive})=> isActive ?'text-blue-500 font-semibold text-lg':'text-gray-700'} to='/'>Home</NavLink> 
-        <NavLink to='/About'>About</NavLink> 
-        <NavLink to='/Contact'>Contact</NavLink> 
-        <NavLink to='/Users'>Users</NavLink> 
+     {nav}
    
       </ul>
     </div>
@@ -33,12 +40,7 @@ function Nav() {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-        <NavLink to='/'><li>Home</li></NavLink> 
-        <NavLink to='/About'><li>About</li></NavLink> 
-        <NavLink to='/Contact'><li>Contact</li></NavLink> 
-        <NavLink to='/Posts'><li>Posts</li></NavLink> 
-        <NavLink to='/Phones'><li>phones</li></NavLink> 
-        <NavLink to='/Phone/:id'><li>Phone</li></NavLink> 
+    {nav}
     </ul>
   </div>
   <div className="navbar-end">

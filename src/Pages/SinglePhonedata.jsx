@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom"
+import {  useLoaderData } from "react-router-dom"
 
 function SinglePhonedata() {
     const phone = useLoaderData()
