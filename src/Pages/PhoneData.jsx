@@ -17,12 +17,12 @@ function PhoneData() {
             console.log(error);
         });
   return (
-    <div>
+    <div className="">
 
-            <div className="grid my-5 gap-4 justify-self-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid my-5 w-[80%] md:w-auto   gap-4 justify-self-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {phones.map((phone) => (
                    
-                    <div key={phone.id} className="card card-compact bg-base-100 w-96 border hover:shadow-lg  pt-4">
+                    <div key={phone.id} className="card card-compact bg-base-100 w-full md:w-96 border hover:shadow-lg  pt-4">
                     <figure>
                       <img
                         src={phone.image}

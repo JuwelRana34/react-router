@@ -4,8 +4,8 @@ function SinglePhonedata() {
     const phone = useLoaderData()
  
   return (
-    <div>
-        <div key={phone.id} className="card card-compact bg-base-100 w-96 border mx-auto my-8 hover:shadow-lg  pt-4">
+    <div className="px-2">
+        <div key={phone.id} className="card card-compact bg-base-100 w-full  md:w-96 border mx-auto my-8 hover:shadow-lg  pt-4">
                     <figure>
                       <img
                         src={phone.image}
