@@ -1,65 +1,122 @@
-import Hero from "../Components/Hero/Hero"
-
+import axios from "axios";
+import Hero from "../Components/Hero/Hero";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const users = () => {
+      axios
+        .get("https://phones-collections.vercel.app/")
+        .then((response) => {
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    users();
+  }, [user]);
+
+  const handelDelete = (id) => {
+    axios
+      .delete(`https://phones-collections.vercel.app/delete/${id}`)
+      .then(() => {
+        const updateduser = user.filter((user) => user.id !== id);
+        setUser(updateduser);
+      })
+      .catch((error) => {
+        console.error("Error deleting data:", error);
+      });
+  };
+
+  const handelsubmit = (e) => {
+    e.preventDefault();
+    const { email, password } = e.target;
+    axios
+      .post("https://phones-collections.vercel.app/user", {
+        email: email.value,
+        password: password.value,
+      })
+      .then((response) => {
+        e.target.reset();
+        //  alert('Data posted successfully:', response.data)
+        setUser([...user, response.data]);
+      })
+      .catch((error) => {
+        console.error("Error posting data:", error);
+      });
+  };
+
   return (
     <>
-    <Hero/>
-    <div className="stats shadow mx-auto container text-center md:flex justify-center">
-  <div className="stat">
-    <div className="stat-figure text-primary">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        className="inline-block h-8 w-8 stroke-current">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-      </svg>
-    </div>
-    <div className="stat-title">Total Likes</div>
-    <div className="stat-value text-primary">25.6K</div>
-    <div className="stat-desc">21% more than last month</div>
-  </div>
-
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        className="inline-block h-8 w-8 stroke-current">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-      </svg>
-    </div>
-    <div className="stat-title">Page Views</div>
-    <div className="stat-value text-secondary">2.6M</div>
-    <div className="stat-desc">21% more than last month</div>
-  </div>
-
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <div className="avatar online">
-        <div className="w-16 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-        </div>
+      <Hero />
+      <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+        <form onSubmit={handelsubmit} className="card-body">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              className="input input-bordered"
+              required
+            />
+            <label className="label">
+              <a href="#" className="label-text-alt link link-hover">
+                Forgot password?
+              </a>
+            </label>
+          </div>
+          <div className="form-control mt-6">
+            <button className="btn btn-primary">Login</button>
+          </div>
+        </form>
       </div>
-    </div>
-    <div className="stat-value">86%</div>
-    <div className="stat-title">Tasks done</div>
-    <div className="stat-desc text-secondary">31 tasks remaining</div>
-  </div>
-</div>
-    
+
+      <ul className="text-center">
+        {user.map((i, indexedDB) => (
+          <li key={i._id}>
+            {" "}
+            <span
+              className={`${
+                indexedDB % 2 === 0 ? "text-green-500" : "text-violet-500"
+              }`}
+            >
+              {i.name}
+            </span>{" "}
+            {i.email}{" "}
+            <button
+              className=" rounded-md bg-red-500 text-white py-2 px-3"
+              onClick={() => handelDelete(i._id)}
+            >
+              delete
+            </button>{" "}
+            <Link to={`/update/${i._id}`} className="btn">
+              Update
+            </Link>{" "}
+          </li>
+        ))}
+      </ul>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

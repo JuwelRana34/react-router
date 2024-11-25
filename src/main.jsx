@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
-import { Home, About, Contact, Posts, Post, postDatils, SinglePhonedata, PhoneData } from "./main";
+import { Home, About, Contact, Posts, Post, postDatils, SinglePhonedata, PhoneData, Update } from "./main";
 import { apiData } from "./Pages/Contact.jsx";
 import { postData} from "./main";
 import {
@@ -35,6 +35,13 @@ const router = createBrowserRouter(
       <Route path="Posts" 
       element={<Posts />}
       loader={postData}
+      /> 
+      <Route path="Update/:id" 
+      element={<Update />}
+      loader={ ({params})=>( axios.get(`https://phones-collections.vercel.app/${params.id}`))}
+           
+     
+
       /> 
       <Route path="post/:postDtails"
        element={<Post/>}

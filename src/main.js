@@ -5,6 +5,7 @@ import Posts from "./Pages/Posts"
 import Post from "./Pages/Post"
 import PhoneData from "./Pages/PhoneData"
 import SinglePhonedata from "./Pages/SinglePhonedata"
+import Update from "./Pages/Update"
 
 
 
@@ -24,4 +25,4 @@ return response.json()
 
 
 
-export {Home, About, Contact, Posts, Post,PhoneData,SinglePhonedata}
+export {Home, About, Contact,Update, Posts, Post,PhoneData,SinglePhonedata}
