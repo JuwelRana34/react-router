@@ -38,7 +38,7 @@ const router = createBrowserRouter(
       /> 
       <Route path="Update/:id" 
       element={<Update />}
-      loader={ ({params})=>( axios.get(`https://phones-collections.vercel.app/${params.id}`))}
+      loader={ ({params})=>( axios.get(`https://phones-collections.vercel.app/users/${params.id}`))}
            
      
 
